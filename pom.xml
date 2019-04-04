@@ -1,59 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.acquitygroup.encryption</groupId>
-    <artifactId>example-encryption</artifactId>
+    <groupId>com.wecanendcraving.encryption</groupId>
+    <artifactId>key-split-merge</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>${project.artifactId}</name>
-    <description>Sample Encryption</description>
-    <url>http://www.acquitygroup.com/</url>
-
-    <parent>
-        <groupId>com.clickconcepts.project</groupId>
-        <artifactId>master-site-pom</artifactId>
-        <version>0.19</version>
-    </parent>
+    <description>Key Split Merge Utility</description>
+    <url>www.facebook.com/wecanendcraving</url>
 
     <organization>
-        <name>Acquity Group</name>
-        <url>http://www.acquitygroup.com</url>
+        <name>WE-can-end Cravings</name>
+        <url>www.facebook.com/wecanendcraving</url>
     </organization>
 
     <developers>
         <developer>
-            <id>Mike!</id>
-            <name>Mike Ensor</name>
-            <email>mike@acquitygroup.com</email>
-            <organization>Acquity Group</organization>
-            <organizationUrl>http://www.acquitygroup.com</organizationUrl>
+            <id>jaiswalvik</id>
+            <name>Vikas Jaiswal</name>
+            <email>jaiswal.vik@gmail.com</email>
+            <organization>WE-can-end Cravings</organization>
+            <organizationUrl>www.facebook.com/wecanendcraving</organizationUrl>
             <roles>
-                <role>Platform Architect</role>
+                <role>Developer</role>
             </roles>
             <timezone>-7</timezone>
         </developer>
     </developers>
-
-    <properties>
-        <repository.name>${project.artifactId}</repository.name>
-        <!-- Parameters for Site Docs -->
-        <scmUrl>${project.scm.url}</scmUrl>
-        <gitUrl>git@${repository.domain}:${repository.user}/${repository.name}.git</gitUrl>
-        <!-- Used for Google Search on Site Documentation page -->
-        <sitesearchValue>${repository.user}.${repository.domain}</sitesearchValue>
-
-        <!-- Override Site Documentation SCM publishing parameters  -->
-        <scm-publish.scmBranch>ghpages</scm-publish.scmBranch>
-        <scm-publish.pubScmUrl>scm:git:git@github.com:mike-ensor/${project.artifactId}.git</scm-publish.pubScmUrl>
-
-        <!-- Location of where "site" documentation is output -->
-        <siteOutputDirectory>${project.build.directory}/site/${project.artifactId}</siteOutputDirectory>
-
-        <changelog.fileUri>${changelog.github.fileUri}</changelog.fileUri>
-        <changelog.revision.fileUri>${changelog.revision.github.fileUri}</changelog.revision.fileUri>
-    </properties>
-
+	<properties>
+	    <maven.compiler.source>1.7</maven.compiler.source>
+	    <maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
     <dependencies>
         <!-- START main dependencies -->
+        <dependency>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-compiler-plugin</artifactId>
+    		<version>3.8.0</version>
+		</dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -81,19 +64,19 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
+        	<plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.acquitygroup.encryption.MainApp</mainClass>
+                            <mainClass>com.wecanendcraving.encryption.MainApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>example-encryption-util</finalName>
+                    <finalName>key-split-merge-util</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
@@ -109,7 +92,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>1.6.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -118,29 +101,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.acquitygroup.encryption.MainApp</mainClass>
-                    <systemProperties>
-                        <!-- Keystore Location -->
-                        <systemProperty>
-                            <key>keystore</key>
-                            <value>main-aes-keystore.jck</value>
-                        </systemProperty>
-                        <!-- storepass -->
-                        <systemProperty>
-                            <key>storepass</key>
-                            <value>mystorepass</value>
-                        </systemProperty>
-                        <!-- alias -->
-                        <systemProperty>
-                            <key>alias</key>
-                            <value>jceksaes</value>
-                        </systemProperty>
-                        <!-- keypass -->
-                        <systemProperty>
-                            <key>keypass</key>
-                            <value>mykeypass</value>
-                        </systemProperty>
-                    </systemProperties>
+                    <mainClass>com.wecanendcraving.encryption.MainApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>
