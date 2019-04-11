@@ -2,7 +2,7 @@
 
 Overview:
 ===================
-This is a sample utility to split/merge 3 AES-256 keys (under development).
+This is a sample utility to split/merge 3 AES-256 keys.
 
 **NOTE:** This example is built using **JDK7**, ultimate strength JCE (JDK7) and [Maven 3.x](http://maven.apache.org "Maven Documentation")
 

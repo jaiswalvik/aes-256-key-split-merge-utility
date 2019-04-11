@@ -5,27 +5,32 @@ import static com.google.common.base.Preconditions.checkArgument;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class MainApp {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    static AESCipher cipher= new AESCipher();
+public class MainApp {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(MainApp.class);
+    
+	static AESCipher cipher= new AESCipher();
     
     public static void main(String[] args) {
 
         checkArgument(args.length > 0, "Usage: java -jar <pathToJar.jar> command");
-
+        
         String command = args[0];
         switch(command) {
             case "generateKey":
                 showKey(cipher.generateAESKey());
                 break;
             case "splitKey":
-            	System.out.println("\n\nSplit Key 1 \n================");
+            	LOG.info("\n\nSplit Key 1 \n================");
         		byte[] generatedKey1= cipher.generateAESKey();
         		showKey(generatedKey1);
-        		System.out.println("\n\nSplit Key 2 \n================");
+        		LOG.info("\n\nSplit Key 2 \n================");
         		byte[] generatedKey2= cipher.generateAESKey();
         		showKey(generatedKey2);
-        		System.out.println("\n\nSplit Key 3 \n================");
+        		LOG.info("\n\nSplit Key 3 \n================");
         		byte[] decodedKey = BaseEncoding.base16().decode(args[1]);
         		// rebuild key using SecretKeySpec
         		SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES"); 
@@ -58,11 +63,11 @@ public class MainApp {
     }
     
     private static void showKey(byte[] key) {
-        System.out.println("\n\nGenerated AES Key\n===========================================");
-        System.out.println("Key (Base64 Encoded): " + BaseEncoding.base64().encode(key));
-        System.out.println("Key (Hex Encoded): " + BaseEncoding.base16().encode(key));
-        System.out.println("Key (Base32 Encoded): " + BaseEncoding.base32().encode(key));
-        System.out.println("KCV: " + cipher.kcv(key));
+        LOG.info("\n\nGenerated AES Key\n===========================================");
+        LOG.info("Key (Base64 Encoded):  {}", BaseEncoding.base64().encode(key));
+        LOG.info("Key (Base32 Encoded):  {}", BaseEncoding.base32().encode(key));
+        LOG.info("Key (Base16 Encoded):  {}", BaseEncoding.base16().encode(key));
+        LOG.info("KCV: {}", cipher.kcv(key));
     }
     
 }
