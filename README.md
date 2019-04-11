@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/jaiswalvik/aes-256-key-split-merge-utility.svg?branch=master)](https://travis-ci.com/jaiswalvik/aes-256-key-split-merge-utility)
+
+
 [Run](#run) | [Generate AES-256 Key](#generate) | [Split AES-256 Key](#split) | [Merge AES-256 Keys](#merge)
 
 Overview:
